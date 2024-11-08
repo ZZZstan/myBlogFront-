@@ -15,6 +15,7 @@ const userUser = useUserStore()
       <svg-icon name="test" class="w-[8rem] h-[8rem]"/>
       <MdiHumanGreetingProximity class="w-[8rem] h-[8rem]"/>
       <MdiFaceManShimmer class="w-[8rem] h-[8rem]"/>
+      <div class="test"></div>
     </div>
   </div>
   
