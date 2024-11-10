@@ -127,17 +127,17 @@ const gotoArticle=(id)=>{
 
 <template>
   <el-row :gutter="20">
-    <el-col :span="18">
+    <el-col :span="18" :xs="24">
       <!-- 文章列表 -->
       <el-card shadow="always" v-for="article in articleList" :key="article.id" class="mb-[1.2rem]">
-        <div class="article-item w-[100%] h-[16rem] flex" >
-          <div class="article-cover w-[45%] h-[100%] overflow-hidden"> 
+        <div class="article-item w-[100%] md:h-[18rem]  flex md:flex-row flex-col" >
+          <div class="article-cover md:w-[45%] md:h-[100%] w-[100%] h-[50%] overflow-hidden"> 
             <el-image @click="gotoArticle(article.id)" :src="article.imageUrl" class="w-[100%] h-[100%] duration-300 hover:scale-125" fit="cover" >
             </el-image> 
           </div>
-          <div class="article-content w-[55%] h-[100%]  p-[1.2rem] flex flex-col justify-center"> 
-            <div class="title text-3xl mb-6" @click="gotoArticle(article.id)">{{ article.title }}</div>
-            <div class="info text-md mb-3 flex items-center flex-wrap">
+          <div class="article-content md:w-[55%] md:h-[100%] w-[100%] h-[50%] p-[1.2rem] flex flex-col justify-center"> 
+            <div class="title text-3xl mb-6 mt-4" @click="gotoArticle(article.id)">{{ article.title }}</div>
+            <div class="info text-md mb-3 flex items-center flex-wrap"> 
               <!-- 创建时间 -->
               <div class="item mr-[1rem] flex items-center createTime">
                 <MdiCalendarTime class="w-[1.2rem] h-[1.2rem] mr-[0.2rem]"/>
@@ -174,11 +174,11 @@ const gotoArticle=(id)=>{
         </div>
       </el-card>
       <!-- 分页导航 -->
-      <div class="flex justify-center items-center">
+      <div class="flex justify-center items-center mb-[2rem]">
         <el-pagination  @change="getArticleList()" v-model:current-page="params.currentPage" v-model:page-size="params.pageSize" background layout="prev, pager, next" :total="staticArticleList.length" />
       </div>
     </el-col>
-    <el-col :span="6">
+    <el-col :span="6" :xs="24">
       <!-- 个人博客信息 -->
       <el-card class="mb-[1.2rem]">
         <div class="banner w-[100%] h-[8rem]">

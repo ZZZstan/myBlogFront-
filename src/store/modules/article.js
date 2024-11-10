@@ -15,6 +15,7 @@ export const useArticleStore = defineStore(
       likes: '',
       category:'',
       tags: [],
+      readDuration:''
     });
     
     const getArticle = () => article.value;

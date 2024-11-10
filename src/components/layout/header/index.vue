@@ -83,10 +83,6 @@ const menuList = [
 
 <style lang="scss" scoped>
   .header-container{
-    backdrop-filter: saturate(100%) blur(3px);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     .left{
       width: 20%;
       .logo{

@@ -7,6 +7,11 @@
   padding: 10px;
   border-bottom: 1px solid #0f172a1a ;
   z-index:999;
+  margin-right: 40px;
+  backdrop-filter: saturate(100%) blur(3px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .main-container{
   width: 100%;
@@ -14,7 +19,7 @@
   min-height: calc(100vh - 180px);
   // max-width: 1080px;
   background: #b1b3b8;
-  backdrop-filter: saturate(100%) blur(3px);
+  // backdrop-filter: saturate(100%) blur(3px);
 }
 .footer-container{
   width: 100%;

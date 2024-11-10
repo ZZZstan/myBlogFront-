@@ -2,23 +2,17 @@
 import homeBg from "@/assets/images/homeBanner.jpg"
 import { useRoute } from 'vue-router';
 import FaChevronDown from '~icons/fa/chevron-down';
-import { onMounted, ref } from 'vue'
+import MdiCalendarTime from '~icons/mdi/calendar-time'
+import GrommetIconsDocumentUpdate from '~icons/grommet-icons/document-update'
+import CarbonCategory from '~icons/carbon/category'
+import LucideTag from '~icons/lucide/tag'
+import BxLike from '~icons/bx/like'
+import IconamoonEyeBold from '~icons/iconamoon/eye-bold'
+import GameIconsDuration from '~icons/game-icons/duration'
+import { useArticleStore } from '@/store/index.js';
 const route = useRoute();
-// const showScrollBottom = ref(true)
-// const initScrollEvent = () => {
-//   document.body.addEventListener('scroll', () => {
-//     if (document.body.scrollTop > 500) {
-//       console.log(document.body.scrollTop);
-//       showScrollBottom.value = false
-//     } else {
-//       showScrollBottom.value = true
-//     }
-//   })
-// }
+const articleStore = useArticleStore()
 
-// onMounted(() => {
-//   initScrollEvent()
-// })
 const scrollToBottom = () => {
   const homeElemrnt = document.querySelector('#home')
   if (homeElemrnt) {
@@ -46,10 +40,44 @@ const scrollToBottom = () => {
     <div class="article" v-else-if="route.path=='/article'">
       <el-image class="banner" :src="homeBg" fit="cover"></el-image>
       <div class="content">
-        注意: 超级管理员账户为admin，密码在env文件里配置，
-        后台登录超级管理员以后，使用超级管理员给自己的账户管理员权限
-        ，就可以发布你的内容了，别使用超级管理员发布内容哦，
-        用户表里没有超级管理员的信息，是我写在配置和代码里的
+        <div class="title">{{ articleStore.getArticle().title }}</div>
+        <div class="info text-md mb-3 flex items-center flex-wrap justify-center max-w-[25rem]">
+              <!-- 创建时间 -->
+              <div class="item mr-[1rem] flex items-center createTime">
+                <MdiCalendarTime class="w-[1.2rem] h-[1.2rem] mr-[0.2rem]"/>
+                <span class="text-md">发表于{{ articleStore.getArticle().createTime }}</span>
+              </div>
+              <!-- 更新时间 -->
+              <div class="item mr-[1rem] flex items-center updateTime">
+                <GrommetIconsDocumentUpdate class="w-[1rem] h-[1rem] mr-[0.2rem]"/>
+                <span class="text-md">更新于{{ articleStore.getArticle().updateTime }}</span>
+              </div>
+              <!-- 分类 -->
+              <div class="item mr-[1rem] flex items-center category">
+                <CarbonCategory class="w-[1rem] h-[1rem] mr-[0.2rem]"/>
+                <span class="text-md">分类:{{ articleStore.getArticle().category }}</span>
+              </div>
+              <!-- 标签 -->
+              <div class="item mr-[1rem] flex items-center tags">
+                <LucideTag class="w-[1rem] h-[1rem] mr-[0.2rem]"/>
+                <span class="text-md">标签:{{ articleStore.getArticle().tags.join('、') }}</span>
+              </div>
+              <!-- 点赞 -->
+              <div class="item mr-[1rem] flex items-center likes">
+                <BxLike class="w-[1rem] h-[1rem] mr-[0.2rem]"/>
+                <span class="text-md">点赞数 {{ articleStore.getArticle().likes }}</span>
+              </div>
+              <!-- 浏览数 -->
+              <div class="item mr-[1rem] flex items-center views">
+                <IconamoonEyeBold class="w-[1rem] h-[1rem] mr-[0.2rem]"/>
+                <span class="text-md">浏览次数 {{ articleStore.getArticle().views }}</span>
+              </div>
+              <!-- 浏览时长 -->
+              <div class="item mr-[1rem] flex items-center views">
+                <GameIconsDuration class="w-[1rem] h-[1rem] mr-[0.2rem]"/>
+                <span class="text-md">浏览时长 {{ articleStore.getArticle().readDuration }}</span>
+              </div>
+            </div>
       </div>
       <div class="mask"></div>
     </div>

@@ -13,6 +13,7 @@ import piniaPluginPersist from "pinia-plugin-persist"
 // svg
 import "virtual:svg-icons-register"
 
+
 const app = createApp(App)
 app.use(router)
 app.use(createPinia().use(piniaPluginPersist))
