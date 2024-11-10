@@ -1,9 +1,8 @@
 <script setup>
-
 </script>
 
 <template>
-  <div>test</div>
+  <div>archive</div>
 </template>
 
 <style scoped>
