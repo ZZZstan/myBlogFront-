@@ -1,6 +1,7 @@
 @use '/src/styles/tailwind.css';
 @use './layout.scss';
 @use './element/custom.scss';
+@use './dark.scss';
 *{
   padding: 0;
   margin: 0;

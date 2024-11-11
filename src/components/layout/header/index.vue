@@ -1,9 +1,18 @@
 <script setup>
-import { defineAsyncComponent } from 'vue';
+import { defineAsyncComponent, ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useDarkStore } from '@/store/index.js';
+import NotoCrescentMoon from '~icons/noto/crescent-moon'
+import NotoV1Sun from '~icons/noto-v1/sun'
+
+
+
+const darkStore = useDarkStore();
+const status=ref(darkStore.getIsDark())
+
+
 const router = useRouter();
 const handleSelect = (path) => {
-  console.log(path)
   if (path) {
     router.push(path)
   }
@@ -53,8 +62,16 @@ const menuList = [
 <template>
   <div class="header-container ">
     <!-- 导航栏左侧 -->
-    <div class="left">
-      <svg-icon name="logo" class="logo"></svg-icon> 
+    <div class="left flex items-center">
+      <svg-icon name="logo" class="logo mr-[3rem]"></svg-icon> 
+      <el-switch
+          @change="darkStore.setIsDark"
+          v-model=status
+          size="large"
+          style="--el-switch-on-color: #afc4cd82; --el-switch-off-color: #06121954"
+          :active-icon="NotoV1Sun"
+          inline-prompt
+          :inactive-icon="NotoCrescentMoon"/>
     </div>
     <!-- 导航栏右侧 -->
     <div class="right">
@@ -103,6 +120,7 @@ const menuList = [
         margin-right: 0.3rem;
         height: 1rem;
         width: 1rem;
+        color: #afc4cd82;
       }
     }
   }

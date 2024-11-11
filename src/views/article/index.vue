@@ -1,10 +1,15 @@
 <script setup>
 import { onMounted,ref } from 'vue'
 import { useArticleStore } from '@/store/index.js'
+import { useDarkStore } from '@/store/index.js';
 import homeBanner from '@/assets/images/homeBanner.jpg'
 //md编辑器依赖
 import { MdPreview, MdCatalog } from 'md-editor-v3';
 import 'md-editor-v3/lib/preview.css';
+
+const darkStore=useDarkStore()
+
+
 
 const articleDetail = {
     id: 1,
@@ -34,7 +39,7 @@ const scrollElement = document.body;
     <el-col :span="18" :xs="24">
       <!-- 文章内容 -->
       <el-card>
-        <MdPreview :editorId="id" :modelValue="articleContent" />
+        <MdPreview :editorId="id" :modelValue="articleContent" :theme="darkStore.isDark ? 'dark' : 'light'"/>
       </el-card>
       <!-- 版权信息 -->
       <el-card class="mt-[1.2rem]">

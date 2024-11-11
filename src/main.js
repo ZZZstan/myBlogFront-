@@ -12,6 +12,8 @@ import { createPinia } from 'pinia'
 import piniaPluginPersist from "pinia-plugin-persist"
 // svg
 import "virtual:svg-icons-register"
+// 暗黑主题
+import 'element-plus/theme-chalk/dark/css-vars.css'
 
 
 const app = createApp(App)

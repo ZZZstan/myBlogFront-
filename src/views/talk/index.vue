@@ -1,6 +1,6 @@
 <script setup>
 import homeBr from '@/assets/images/homeBanner.jpg'
-import { nextTick, onMounted, reactive, ref } from 'vue'
+import { nextTick, onBeforeUnmount, onMounted, reactive, ref } from 'vue'
 const staticTalkList = [
   { id: 1, userId: 1, nickName: 'stan', content: '再也不学java了', imageList: [homeBr] },
   { id: 2, userId: 2, nickName: 'stan', content: '再也不学java了', imageList: [homeBr,homeBr,homeBr,homeBr,homeBr,homeBr] },
@@ -22,16 +22,18 @@ const params=reactive({
 
 const loadMore=ref(true)
 
+let observer = null
+let observerDom=null
 /**
  * 使用Intersection Observer API实现无限滚动加载对话列表的函数
  * 该函数通过监听页面滚动来决定是否需要加载更多对话内容
  */
 const observerTalk = () => {
   // 获取需要观察的DOM元素，这里是类名为'observer'的元素
-  const observerDom=document.querySelector('.observer')
+  observerDom=document.querySelector('.observer')
   // 创建一个Intersection Observer实例
   // 当观察的目标元素与视口交集发生变化时，执行回调函数
-  const observer = new IntersectionObserver(entries => {
+  observer = new IntersectionObserver(entries => {
     // 遍历Intersection Observer回调函数返回的entries数组
     entries.forEach((v) => {
       // 当元素与视口有交集时，即元素滚动到视口范围内
@@ -44,8 +46,11 @@ const observerTalk = () => {
     })
   })
   // 如果找到了需要观察的DOM元素，则使用Intersection Observer实例对其进行观察
-  observerDom && observer.observe(observerDom);
+  if (observerDom&&observer) {
+    observer.observe(observerDom)
+  }
 }
+
 const getTalkList = () => {
   let current = (params.currentPage - 1) * params.pageSize;
   let sliceList = staticTalkList.slice(current, current + params.pageSize);
@@ -54,6 +59,7 @@ const getTalkList = () => {
     loadMore.value=false
   }
 }
+
 const initTalkList = () => {
   getTalkList()
   nextTick(() => {
@@ -63,6 +69,14 @@ const initTalkList = () => {
 
 onMounted(() => {
   initTalkList()
+})
+
+onBeforeUnmount(() => {
+  // 页面卸载时，取消观察
+  if (observer) {
+    observer.unobserve(observerDom);
+    observer = null;
+  }
 })
 </script>
 

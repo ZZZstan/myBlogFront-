@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vueuse/core": "^11.2.0",
     "axios": "^1.7.7",
     "element-plus": "^2.8.7",
     "md-editor-v3": "^4.21.3",
@@ -32,6 +33,7 @@
     "@iconify-json/mdi": "^1.2.1",
     "@iconify-json/mingcute": "^1.2.1",
     "@iconify-json/noto": "^1.2.1",
+    "@iconify-json/noto-v1": "^1.2.0",
     "@iconify-json/ri": "^1.2.3",
     "@iconify-json/stash": "^1.2.1",
     "@vitejs/plugin-vue": "^5.1.4",

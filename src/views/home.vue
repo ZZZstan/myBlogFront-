@@ -125,8 +125,8 @@ const gotoArticle=(id)=>{
 }
 </script>
 
-<template>
-  <el-row :gutter="20">
+<template >
+  <el-row :gutter="20" >
     <el-col :span="18" :xs="24">
       <!-- 文章列表 -->
       <el-card shadow="always" v-for="article in articleList" :key="article.id" class="mb-[1.2rem]">
@@ -227,7 +227,7 @@ const gotoArticle=(id)=>{
           </div>
         </template>
         <div class="p-[1rem] flex items-center flex-wrap">
-          <div v-for="tag in tagsList" :key="tag" class="px-[0.3rem] py-[0.1rem] bg-slate-300 mr-[0.3rem] mb-[0.3rem] rounded-md">{{ tag }}</div>
+          <div v-for="tag in tagsList" :key="tag" class="px-[0.3rem] py-[0.1rem] bg-zinc-400 mr-[0.3rem] mb-[0.3rem] rounded-md">{{ tag }}</div>
         </div>
       </el-card>
       <!-- 网站资讯 -->
